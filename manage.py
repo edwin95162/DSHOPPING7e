@@ -3,7 +3,7 @@
 import os
 import sys
 
-
+###EDWIN GARCÌA - MAURICIO PANTOJA
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dshopping.config.dev')#conexion a BD carpeta config archivo dev
     try:
