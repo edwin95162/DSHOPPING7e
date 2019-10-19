@@ -31,7 +31,7 @@ class country(main):
         return self.title
 
 class gender(main):
-    title = models.CharField('Country name', max_length=100)
+    title = models.CharField('Title', max_length=100)
     description = models.CharField('description', max_length=100)
     status = models.CharField('Status', max_length=100)
     class Meta:
@@ -43,14 +43,14 @@ class clients(main):
     id_client = models.CharField('Id Client', max_length=10, unique=True)
     first_name = models.CharField('First name', max_length=100)
     last_name = models.CharField('Last name', max_length=100)
-    id_gender = models.CharField('Gender', max_length=1)
+    Gender = models.ForeignKey(gender, on_delete=models.CASCADE)
     phone = models.CharField('phone', max_length=10, unique=True)
     email = models.EmailField('E-mail', max_length=150)
     password = models.CharField ('Password', max_length = 15)               
-    id_country = models.CharField ('Id Country', max_length=20)    
+    id_country = models.ForeignKey (country, on_delete=models.CASCADE)    
     image = models.ImageField ('Author image', null= True, blank=True, upload_to='authors/')
     message = models.TextField('Status',max_length=10)
-    credit_card_number = models.TextField('Number credit',max_length=15)
+    credit_card_number = models.CharField('Number credit',max_length=15)
     class Meta:
         verbose_name = 'Client'
         verbose_name_plural = 'Clients'
@@ -75,7 +75,7 @@ class products(main):
 class shopping(main):
     id_product = models.ForeignKey (products, on_delete=models.CASCADE)
     id_client = models.ForeignKey (clients, on_delete=models.CASCADE)
-    shopping_date = models.CharField('Shopping Date', max_length=100)
+    shopping_date = models.DateField('Shopping date', auto_now=True, auto_now_add=False)
     class Meta:
         verbose_name = 'Shopping'
         verbose_name_plural = 'Shoppings'
